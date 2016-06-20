@@ -1,67 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Magsom.GitHub.io : ">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Magsom.GitHub.io</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/magsom">View on GitHub</a>
-
-          <h1 id="project_title">Magsom.GitHub.io</h1>
-          <h2 id="project_tagline"></h2>
-
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+<head>
+<meta charset="utf-8">
+<title>反交错</title>
+<link href="1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<p>为什么网络上的大多数视频的帧频都是和电影一样的25帧每秒呢？<br>
+我们平常看到的电视通常帧频都是50FPS，所以看到电视的画面很流畅。那么为什么网络上的网站都不提供50FPS的平滑流畅的视频呢？<br>
+电视的信号通常都是以交错格式传输的，因为显像管电视机都用隔行扫描画面的方式。这种画面描绘方式使得只传输一帧画面就可以显示出两帧画面。这既节省了带宽而获得了更多的帧数。只需有25FPS帧频的数据处理能力和带宽就能获得50FPS的流畅视频。
+      那么为什么到了网页上视频都不使用交错格式传输呢？<br>
+到了电脑上，监视器的扫描方式都是逐行扫描。逐行扫描不兼容交错格式的视频。因为它不会把一幅画面拆成两场扫描两次。<br>
+举例50i格式来说，逐行扫描将直接显示出信号的两场，25FPS，不会像隔行扫描那样50Hz扫描。隔行扫描显示静态图象时会看到画面好像在抖，而在动态画面中看不到亮度的变化。<br>
+对于逐行扫描的屏幕，要正常显示出 i 帧需要进行反交错处理得到2个p帧的信号，然后在逐行扫描的屏幕上就能正常显示出画面。<br>
+<br>
+实际上就是把一帧分开来扫描两次，在大部分播放器中都不能实现……都是同时就把这一帧画面直接全部显示出来……<br>
+<br>
+那么反交错处理得到的p帧会是什么样子的呢？<br>
+有可能会是和没反交错看到的一样！因为液晶显示器没有CRT显像管的特性，传统的直接显示倍帧扫描可能没用。（就是上文直接扫描两次的方法！）<br>
+对于液晶显示器，我们当然要有别的方法来扫描这两场，扫描两次实际上没那么简单哦。<br>
+<br>
+<ol>
+	<li> BOB 复制法，扫描上场时把上场的像素直接复制到下场，扫描下场时复制下场到上场。</li>
+	<li>模仿CRT的光特性补充像素点，就是扫描一场的时候将1、3场与前一帧2场的颜色混合得到2场。</li>
+	<li> etc.……还有很多算法，我也不太清楚，要学习。</li>
+</ol>
+正是由于高级的反交错算法，我们得以以高于原画质的质量观看这些视频，得以在液晶显示器上观看它们，得以节省了带宽和硬件。<br>
+<br>
+问题就在这里：反交错处理的实现。<br>
+在网页中，插入一个视频，通常需要插件，还需要浏览器支持。现在大多数网页中的视频都通过Adobe Flash插件播放。因为Flash的跨平台的支持和普及性——几乎每台设备都安装了Flash，使得几大视频网站土豆、Vimeo、优酷等，都使用Flash来播放视频。<br>
+<br>
+为什么这些视频网站，把我上传的交错格式的视频都转码为逐行格式呢？这样不就损失了一半的FPS，一半的画面幅数？<br>
+我所想到的惟一原因就是Flash不支持对视频进行反交错处理，或者用Flash进行反交错消耗的CPU资源太大。<br>
+不然为什么要把占数据量相同的，帧数是逐行格式一倍的交错视频转换为与源隔行视频画质一样的逐行视频呢？<br>
+<br>
+Flash理论上支持能支持各种各样的滤镜效果，能对视频进行各种各样的处理，然而为什么却不支持反交错处理呢？我所知道，目前大多数Flash动画文档的FPS都没有设置成50。因为过快的FPS将消耗大量CPU，画面重绘像素越多，消耗CPU也越多。这时就有可能不能全速播放动画，甚至掉帧。<br>
+Flash在默认情况下FPS下降的时候将减速播放而不会通过跳帧来维持100%全速。<br>
+我们通过实验来验证Flash能否进行反交错。下面是Flash视频的几个例子<br>
+另外HTML5中支持了视频。只要网站使用HTML播放器播放视频，且你使用的浏览器支持HTML5，那么就可以播放。这种时候反交错处理就看浏览器支持了。<br>
+<br>
+我们通过实验来验证你的浏览器能否反交错视频。<br>
+<video width="250" height="252" id="vo" title="一个交错视频" preload="none" controls loop >
+	<source  id="v"  src="i.mp4"  type="video/mp4" >
+	</source>
+</video>
+<br>
+最后与答案对比：如果反交错正常，你应该看到和下图差不多的效果。下图是使用Yadif反交错滤镜得到的结果。<br>
+<img src="i.gif" alt="答案" width="250" height="252" id="ans"/>
+</p>
+</body>
 </html>
